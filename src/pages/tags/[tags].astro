@@ -17,6 +17,10 @@ const { tag } = Astro.params;
 const { posts } = Astro.props;
 const filteredPosts = posts.filter((post) => post.frontmatter.tags.includes(tag));
 ---
-<BaseLayout pageTitle={tag}>
+<BaseLayout pageTitle={tag}>   
   <p>Posts tagged with {tag}</p>
+  <ul>
+    {filteredPosts.map((post) => <li><a href={post.url}>{post.frontmatter.title}</a></li>)}
+     {filteredPosts.map(post => <BlogPost url={post.url} title={post.frontmatter.title}/>)}
+  </ul>
 </BaseLayout>
